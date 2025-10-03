@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Only Dragons Fashion Design System - Luxurious Black & White */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Monochromatic Luxury with Dragon Fire Accents */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
+    
+    /* Pure contrasts for dramatic effect */
+    --pure-black: 0 0% 0%;
+    --pure-white: 0 0% 100%;
+    --dragon-dark: 0 0% 5%;
+    --dragon-light: 0 0% 95%;
+    
+    /* Dragon Fire - Subtle red accents */
+    --dragon-fire: 0 65% 45%;
+    --dragon-fire-light: 0 55% 85%;
+    --dragon-fire-dark: 0 75% 25%;
+    
+    /* Subtle grays for depth */
+    --gray-50: 0 0% 97%;
+    --gray-100: 0 0% 94%;
+    --gray-200: 0 0% 88%;
+    --gray-800: 0 0% 15%;
+    --gray-900: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 8%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 0 0% 8%;
+
+    --radius: 0.5rem;
+    
+    /* Dragon-inspired gradients */
+    --gradient-dragon: linear-gradient(135deg, hsl(var(--dragon-dark)), hsl(var(--gray-800)));
+    --gradient-luxury: linear-gradient(180deg, hsl(var(--pure-white)), hsl(var(--gray-50)));
+    --gradient-mystery: linear-gradient(45deg, hsl(var(--pure-black)) 0%, hsl(var(--gray-900)) 100%);
+    --gradient-fire: linear-gradient(135deg, hsl(var(--dragon-fire-dark)), hsl(var(--dragon-fire)));
+    
+    /* Elegant shadows */
+    --shadow-luxury: 0 20px 50px -10px hsl(var(--pure-black) / 0.1);
+    --shadow-dragon: 0 30px 60px -15px hsl(var(--pure-black) / 0.15);
+    --shadow-subtle: 0 4px 20px hsl(var(--pure-black) / 0.08);
+    
+    /* Typography scales */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Smooth transitions */
+    --transition-luxury: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-swift: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* Dragon-inspired patterns and textures */
+@layer components {
+  .dragon-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(var(--pure-black) / 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(var(--gray-900) / 0.03) 0%, transparent 50%);
+  }
+  
+  .luxury-texture {
+    background: 
+      linear-gradient(45deg, transparent 49%, hsl(var(--pure-black) / 0.01) 50%, transparent 51%),
+      linear-gradient(-45deg, transparent 49%, hsl(var(--gray-800) / 0.01) 50%, transparent 51%);
+    background-size: 20px 20px;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .hero-text {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  
+  .body-text {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .luxury-button {
+    transition: var(--transition-luxury);
+    box-shadow: var(--shadow-subtle);
+  }
+  
+  .luxury-button:hover {
+    box-shadow: var(--shadow-luxury);
+    transform: translateY(-2px);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
