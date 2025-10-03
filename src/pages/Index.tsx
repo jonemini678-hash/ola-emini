@@ -73,6 +73,8 @@ const Index = () => {
               <span>© 2024 Ola Emini Couture</span>
               <span>•</span>
               <span>Handcrafted with ♥</span>
+              <span>•</span>
+              <span>Tel: +383 43 574 383</span>
             </div>
           </div>
         </div>
