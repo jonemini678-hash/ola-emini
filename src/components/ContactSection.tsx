@@ -1,9 +1,7 @@
-// components/ContactSection.tsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
-import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from "../emailconfig";
 
 type ContactForm = {
   name: string;
@@ -29,7 +27,11 @@ const ContactSection = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -38,28 +40,35 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // 👉 Testo a po lexohen variablat nga .env
+    console.log("SERVICE ID:", import.meta.env.VITE_EMAILJS_SERVICE_ID);
+    console.log("TEMPLATE ID:", import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+    console.log("PUBLIC KEY:", import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+
     try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || "N/A",
+        dressType: formData.dressType,
+        budget: formData.budget,
+        timeline: formData.timeline,
+        message: formData.message,
+      };
+
       await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone || "N/A",
-          dressType: formData.dressType,
-          budget: formData.budget,
-          timeline: formData.timeline,
-          message: formData.message,
-        },
-        EMAILJS_PUBLIC_KEY
-      );
+  "service_e2e3xwu",      // Service ID
+  "template_ordh0q7",     // Template ID
+  templateParams,
+  "kFwrpQS5ftBlhOs1u"     // Public Key
+);
+
 
       toast({
         title: "Appointment Request Sent",
         description: "Thank you! We'll contact you soon.",
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -91,13 +100,16 @@ const ContactSection = () => {
             value={formData.name}
             onChange={handleInputChange}
             className="w-full p-3 border rounded"
+            required
           />
           <input
             name="email"
+            type="email"
             placeholder="Email *"
             value={formData.email}
             onChange={handleInputChange}
             className="w-full p-3 border rounded"
+            required
           />
           <input
             name="phone"
@@ -111,8 +123,11 @@ const ContactSection = () => {
             value={formData.dressType}
             onChange={handleInputChange}
             className="w-full p-3 border rounded"
+            required
           >
-            <option value="" disabled>Select Dress Type *</option>
+            <option value="" disabled>
+              Select Dress Type *
+            </option>
             <option>Wedding Dress</option>
             <option>Evening Gown</option>
             <option>Custom Suit</option>
@@ -123,8 +138,11 @@ const ContactSection = () => {
             value={formData.budget}
             onChange={handleInputChange}
             className="w-full p-3 border rounded"
+            required
           >
-            <option value="" disabled>Select Budget Range *</option>
+            <option value="" disabled>
+              Select Budget Range *
+            </option>
             <option>$1,000 - $3,000</option>
             <option>$3,000 - $6,000</option>
             <option>$6,000 - $10,000</option>
@@ -135,8 +153,11 @@ const ContactSection = () => {
             value={formData.timeline}
             onChange={handleInputChange}
             className="w-full p-3 border rounded"
+            required
           >
-            <option value="" disabled>Select Your Timeline *</option>
+            <option value="" disabled>
+              Select Your Timeline *
+            </option>
             <option>3-6 Months</option>
             <option>6-12 Months</option>
             <option>12+ Months</option>
@@ -148,8 +169,13 @@ const ContactSection = () => {
             onChange={handleInputChange}
             rows={5}
             className="w-full p-3 border rounded"
-          ></textarea>
-          <Button type="submit" disabled={isSubmitting} className="w-full bg-pink-600 text-white py-3">
+            required
+          />
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-pink-600 text-white py-3"
+          >
             {isSubmitting ? "Sending..." : "Request Appointment"}
           </Button>
         </form>
